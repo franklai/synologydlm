@@ -1,0 +1,11 @@
+{
+    "name": "hliang",
+    "displayname": "黑亮",
+    "description": "日韓港台 綜藝 連續劇",
+    "version": "1.0",
+    "site": "http://bt.hliang.com",
+    "module": "search.php",
+    "type": "search",
+    "class": "TorrentSearchHliang"
+}
+

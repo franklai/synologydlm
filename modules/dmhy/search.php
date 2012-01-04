@@ -112,6 +112,10 @@ class TorrentSearchDmhy {
     private function combineDownloadLink($title, $hash) {
         return 'magnet:?xt=urn:btih:' . $hash . '&dn=' . urlencode($title);
     }
+    private function getDownloadLink($string) {
+        $pattern = '/"(magnet:[^"]+)"/';
+        return Common::getFirstMatch($string, $pattern);
+    }
     private function getSeeds($string) {
         return trim(strip_tags(
             Common::getSubString($string, '<span', '</span>')
@@ -152,12 +156,13 @@ class TorrentSearchDmhy {
         // 1: date
         // 2: category
         // 3: title and page link
-        // 4: download link
-        // 5: size
-        // 6: seeds
-        // 7: leechs
-        // 8: // completed
-        // 9: // publisher
+        // 4: torrent link (need login)
+        // 5: magnet link
+        // 6: size
+        // 7: seeds
+        // 8: leechs
+        // 9: // completed
+        // 10: // publisher
 
         $titlePrefix = '<a href="/topics/view/';
         $titleSuffix = '</a>';
@@ -170,11 +175,11 @@ class TorrentSearchDmhy {
         $info['category'] = $this->getCategory($tdArray[2]);
         $hash = $this->getHash($tdArray[4]);
         $info['hash'] = $hash;
-        $info['download'] = $this->combineDownloadLink($title, $hash);
-        $info['seeds'] = $this->getSeeds($tdArray[6]);
-        $info['leechs'] = $this->getLeechs($tdArray[7]);
+        $info['download'] = $this->getDownloadLink($tdArray[5]);
+        $info['seeds'] = $this->getSeeds($tdArray[7]);
+        $info['leechs'] = $this->getLeechs($tdArray[8]);
 
-        $info['size'] = $this->getSize($tdArray[5]);
+        $info['size'] = $this->getSize($tdArray[6]);
         $info['datetime'] = $this->getDatetime($tdArray[1]);
 
         return $info;
@@ -222,13 +227,15 @@ if (!debug_backtrace()) {
             echo "\n";
             echo "\t" .'datetime:'."\t". $datetime;
             echo "\n";
+            echo "\t" .'seeds:'."\t". $seeds."\t".'leechs:'."\t".$leechs;
+            echo "\n";
             echo "\n";
         }
     }
 
     $curl = init_curl();
 
-    $module = 'SynoDLMSearchDmhy';
+    $module = 'TorrentSearchDmhy';
     $query = 'gintama';
 
 

@@ -2,7 +2,7 @@
     "name": "dmhy",
     "displayname": "share.dmhy.org",
     "description": "Anime, Comic, anison",
-    "version": "1.0",
+    "version": "1.1",
     "site": "http://share.dmhy.org",
     "module": "search.php",
     "type": "search",

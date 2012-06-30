@@ -1,0 +1,13 @@
+{
+    "name": "jpopsuki",
+    "displayname": "JPopsuki 2.0",
+    "description": "JPop, KPop",
+    "version": "1.0",
+    "site": "http://jpopsuki.eu",
+    "accountsupport": true,
+    "hostprefix": "jpopsuki.eu",
+    "module": "search.php",
+    "type": "search",
+    "class": "TorrentSearchJpopsuki"
+}
+

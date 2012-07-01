@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 if (!class_exists('Common')) {
@@ -166,7 +165,8 @@ class TorrentSearchJpopsuki {
         // JAN 11 2011, 08:47
         $pattern = '/title="([^"]+)"/';
         $str = Common::getFirstMatch($string, $pattern);
-        return $str;
+        $date = DateTime::createFromFormat('M d Y, H:m', $str);
+        return $date->getTimestamp();
     }
 
     private function getInfoFromItem($item) {
@@ -266,13 +266,15 @@ if (basename($argv[0]) === basename(__FILE__)) {
     $curl = init_curl();
 
     $module = 'TorrentSearchJpopsuki';
-    $query = 'sakamoto';
+    $query = 'music station';
 
     $refClass = new ReflectionClass($module);
     $obj = $refClass->newInstance();
 
-    $username = '';
-    $password = '';
+    $ini_file = 'setting.conf';
+    $setting = parse_ini_file($ini_file);
+    $username = $setting['username'];
+    $password = $setting['password'];
 
     $obj->prepare($curl, $query, $username, $password);
     $testObj = new TestObj();

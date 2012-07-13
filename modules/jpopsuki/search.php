@@ -132,12 +132,15 @@ class TorrentSearchJpopsuki {
 
     private function getPageLink($string) {
         $pattern = '/<a href="(torrents.php\?id=[0-9]+\&amp;torrentid=[0-9]+)"/';
-        return htmlspecialchars_decode(Common::getFirstMatch($string, $pattern));
+        return htmlspecialchars_decode(
+            Common::getFirstMatch($string, $pattern), 
+            ENT_QUOTES
+        );
     }
     private function getTitle($string) {
         return htmlspecialchars_decode(trim(strip_tags(
-            Common::getSubString(str_replace("\t\t\t", ' ', $string), '<a href="artist.php', '<br ')
-        )));
+            Common::getSubString(str_replace("\t\t\t", ' ', $string), '</span>', '<br ')
+        )), ENT_QUOTES);
     }
     private function getCategory($string) {
         return trim(strip_tags(
@@ -146,7 +149,10 @@ class TorrentSearchJpopsuki {
     }
     private function getDownloadLink($string) {
         $pattern = '/a href="([^"]+)" title="Download"/';
-        return htmlspecialchars_decode(Common::getFirstMatch($string, $pattern));
+        return htmlspecialchars_decode(
+            Common::getFirstMatch($string, $pattern),
+            ENT_QUOTES
+        );
     }
     private function getSeeds($string) {
         $pattern = '/>([0-9]+)</';
@@ -223,7 +229,6 @@ class TorrentSearchJpopsuki {
 
         foreach ($trArray as $item) {
             $info = $this->getInfoFromItem($item);
-var_dump($info);
 
             if ($info) {
                 $plugin->addResult(
@@ -266,7 +271,7 @@ if (basename($argv[0]) === basename(__FILE__)) {
     $curl = init_curl();
 
     $module = 'TorrentSearchJpopsuki';
-    $query = 'music station';
+    $query = 'amuro';
 
     $refClass = new ReflectionClass($module);
     $obj = $refClass->newInstance();

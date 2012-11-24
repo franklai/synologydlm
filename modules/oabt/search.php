@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 if (!class_exists('Common')) {
@@ -229,4 +228,3 @@ if (!debug_backtrace()) {
 
 // vim: expandtab ts=4
 ?>
-

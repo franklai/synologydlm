@@ -1,0 +1,11 @@
+{
+    "name": "fujirou_publichd",
+    "displayname": "PublicHD",
+    "description": "Download High Definition Torrents",
+    "version": "1.0",
+    "site": "http://publichd.se/",
+    "module": "search.php",
+    "type": "search",
+    "class": "FujirouPublicHD"
+}
+

@@ -1,0 +1,11 @@
+{
+    "name": "dmhy_anoneko",
+    "displayname": "dmhy.anoneko.com",
+    "description": "Anime, Comic, anison",
+    "version": "1.0",
+    "site": "https://dmhy.anoneko.com",
+    "module": "search.php",
+    "type": "search",
+    "class": "TorrentSearchDmhyAnoneko"
+}
+

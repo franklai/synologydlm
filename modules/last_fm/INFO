@@ -1,0 +1,11 @@
+{
+    "name": "last_fm",
+    "displayname": "last.fm",
+    "description": "Explore Top Music Powered by your Scrobbles",
+    "version": "1.0",
+    "site": "http://www.last.fm",
+    "module": "search.php",
+    "type": "search",
+    "class": "TorrentSearchLastFm"
+}
+

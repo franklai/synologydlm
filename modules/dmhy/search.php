@@ -104,6 +104,16 @@ if (!debug_backtrace()) {
             echo "\n";
             echo "\n";
         }
+        public function addRSSResults($rss) {
+            $pattern = '/<enclosure url="(.+?)"/';
+            $ret = preg_match_all($pattern, $rss, $matches);
+            if ($ret > 0) {
+                var_dump($matches);
+                return $matches[1];
+            } else {
+                echo "no\n";
+            }
+        }
     }
 
     $curl = init_curl();
